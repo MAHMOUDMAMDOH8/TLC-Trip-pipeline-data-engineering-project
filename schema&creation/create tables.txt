@@ -1,0 +1,96 @@
+CREATE TABLE "Fact G_taxi" (
+  "Vendor_ID" <type>,
+  "Date_key" <type>,
+  "PuLocation_ID" <type>,
+  "DoLocation_ID" <type>,
+  "RateCode_ID" <type>,
+  "Payment_ID" <type>,
+  "Trip_type_id" <type>,
+  "Store_Forward_fwd__flag" <type>,
+  "Extra" <type>,
+  "Fare_amount" <type>,
+  "MTA_tax" <type>,
+  "Tip_amount" <type>,
+  "Tolls_amount" <type>,
+  "Total_amount" <type>
+);
+
+CREATE INDEX "Key" ON  "Fact G_taxi" ("Vendor_ID");
+
+CREATE INDEX "Fk" ON  "Fact G_taxi" ("Date_key");
+
+CREATE TABLE "Dim_Date" (
+  "Date_key" <type>,
+  "Lpep_pickup_datetime" <type>,
+  "Pick_hour" <type>,
+  "Pick_day" <type>,
+  "Pick_moonth" <type>,
+  "Pick_year" <type>,
+  "Pick_weekday" <type>,
+  "Lpep_drop_datetime" <type>,
+  "drop_hour" <type>,
+  "drop_day" <type>,
+  "drop_month" <type>,
+  "drop_year" <type>,
+  "drop_weekday" <type>,
+  CONSTRAINT "FK_Dim_Date.Date_key"
+    FOREIGN KEY ("Date_key")
+      REFERENCES "Fact G_taxi"("Date_key")
+);
+
+CREATE INDEX "Key" ON  "Dim_Date" ("Date_key");
+
+CREATE TABLE "Dim_pickLocation" (
+  "PuLocation_ID" <type>,
+  "Brough" <type>,
+  "Zone" <type>,
+  "service_zone" <type>,
+  CONSTRAINT "FK_Dim_pickLocation.PuLocation_ID"
+    FOREIGN KEY ("PuLocation_ID")
+      REFERENCES "Fact G_taxi"("PuLocation_ID")
+);
+
+CREATE INDEX "Key" ON  "Dim_pickLocation" ("PuLocation_ID");
+
+CREATE TABLE "Dim_dropLocation" (
+  "DoLocation_ID" <type>,
+  "Brough" <type>,
+  "Zone" <type>,
+  "service_zone" <type>,
+  CONSTRAINT "FK_Dim_dropLocation.DoLocation_ID"
+    FOREIGN KEY ("DoLocation_ID")
+      REFERENCES "Fact G_taxi"("DoLocation_ID")
+);
+
+CREATE INDEX "Key" ON  "Dim_dropLocation" ("DoLocation_ID");
+
+CREATE TABLE "Dim_payment" (
+  "Payment_ID" <type>,
+  "payment_type" <type>,
+  CONSTRAINT "FK_Dim_payment.Payment_ID"
+    FOREIGN KEY ("Payment_ID")
+      REFERENCES "Fact G_taxi"("Payment_ID")
+);
+
+CREATE INDEX "Key" ON  "Dim_payment" ("Payment_ID");
+
+CREATE TABLE "Dim_Rate" (
+  "RateCode_ID" <type>,
+  "Rate" <type>,
+  CONSTRAINT "FK_Dim_Rate.RateCode_ID"
+    FOREIGN KEY ("RateCode_ID")
+      REFERENCES "Fact G_taxi"("RateCode_ID")
+);
+
+CREATE INDEX "Key" ON  "Dim_Rate" ("RateCode_ID");
+
+CREATE TABLE "Dim_trip_type" (
+  "Trip_type_id" <type>,
+  "type" <type>,
+  CONSTRAINT "FK_Dim_trip_type.Trip_type_id"
+    FOREIGN KEY ("Trip_type_id")
+      REFERENCES "Fact G_taxi"("Trip_type_id")
+);
+
+CREATE INDEX "Key" ON  "Dim_trip_type" ("Trip_type_id");
+

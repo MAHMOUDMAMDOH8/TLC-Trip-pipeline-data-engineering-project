@@ -1,0 +1,124 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - transformdata
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: Extract_data_
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: extract_data_
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - exportdata
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: TransformData
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - extract_data_
+  uuid: transformdata
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: ExportData
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - transformdata
+  uuid: exportdata
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - createtwotabls
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: Extract_taxi_zoom
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: extract_taxi_zoom
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - exporttwo_table
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: Createtwotabls
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - extract_taxi_zoom
+  uuid: createtwotabls
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: exporttwo table
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - createtwotabls
+  uuid: exporttwo_table
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-02-13 16:11:37.204600+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: ETL_pipeline
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+updated_at: '2024-02-13 17:49:43'
+uuid: etl_pipeline
+variables_dir: /home/src/mage_data/magic-zoomcamp
+widgets: []

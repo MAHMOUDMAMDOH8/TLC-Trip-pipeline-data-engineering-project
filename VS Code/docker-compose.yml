@@ -1,0 +1,51 @@
+version: '3'
+services:
+  magic:
+    image: mageai/mageai:latest
+    container_name : mage
+    command: mage start magic-zoomcamp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      USER_CODE_PATH: /home/src
+      POSTGRES_DBNAME: postgres
+      POSTGRES_SCHEMA: magic
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 8122
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+    ports:
+      - 6789:6789
+    volumes:
+      - 
+    restart: on-failure:5
+    networks:
+      - my_network
+  postgres:
+    image: postgres:14
+    restart: on-failure
+    container_name: warehouse
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 8122
+    ports:
+      - "5432:5432"
+    networks:
+      - my_network
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name : PG
+    environment:
+      - PGADMIN_DEFAULT_EMAIL='@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD='2'
+    networks:
+      - my_network
+    volumes:
+    ports: 
+      - "8080:80"
+
+networks:
+  my_network:
+    driver: bridge
