@@ -1,8 +1,9 @@
-#TLC-Trip-pipeline-data-engineering-project
-#Project Overview
+# TLC-Trip-pipeline-data-engineering-project
+
+## Project Overview
 The TLC-Trip Pipeline Data Engineering Project aims to conduct comprehensive data analytics on TLC (Taxi and Limousine Commission) trip data using a variety of tools and technologies. By leveraging Postgres, Python, Compute Instance, Mage Data Pipeline Tool, Power BI, and Docker, the project aims to extract valuable insights from TLC trip data for informed decision-making and operational optimizations.
 
-#Project Objectives
+## Project Objectives
 Data Acquisition: Extract TLC trip data from relevant sources, ensuring data integrity and security.
 
 Data Storage: Design and implement a robust Postgres database schema optimized for efficient storage and retrieval of TLC trip data.
